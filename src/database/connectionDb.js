@@ -1,6 +1,10 @@
+//Importamos express
 const express = require('express')
+
+//Importamos mysq
 const mysql2 = require('mysql2');
 
+//Creamos un objeto que tendra la conexion a la base de datos
 const connection = mysql2.createConnection({
     host: 'localhost',
     user: 'root',
@@ -10,6 +14,7 @@ const connection = mysql2.createConnection({
     
 });
 
+//Verificamos si la conexion de hizo 
 connection.connect(function (err) {
     if (err) {
         throw err;
@@ -19,4 +24,5 @@ connection.connect(function (err) {
     }
 })
 
+//Exportamos la conexion
 module.exports = connection;

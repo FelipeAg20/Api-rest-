@@ -1,9 +1,14 @@
+//Importamos express
 const express = require("express");
+//Importamos la conexion a la base de datos
 const conexion = require("../database/connectionDb");
 
+
+//Estas son las funciones que se pasaran como parametro a los controladores como un resultado 
+//Se hacen consultas a la base de datos usando el metodo query
 const getAllWorkout = () => {
   return new Promise((resolve, reject) => {
-    conexion.query("SELECT * FROM marca", (err, result) => {
+    conexion.query("SELECT * FROM usuarios", (err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -16,7 +21,7 @@ const getAllWorkout = () => {
 const getOneWorkout = (workoutId) => {
   return new Promise((resolve, reject) => {
     conexion.query(
-      "SELECT * FROM marca WHERE id_marca = ?",
+      "SELECT * FROM usuarios WHERE id = ?",
       [workoutId],
       (err, result) => {
         if (err) {
@@ -32,7 +37,7 @@ const getOneWorkout = (workoutId) => {
 const createNewWorkout = (workout) => {
   return new Promise((resolve, reject) => {
     conexion.query(
-      "INSERT INTO marca SET ?",
+      "INSERT INTO usuarios SET ?",
       workout,
       (err, result) => {
         if (err) {
@@ -48,7 +53,7 @@ const createNewWorkout = (workout) => {
 const updateWorkout = (workoutId, workout) => {
   return new Promise((resolve, reject) => {
     conexion.query(
-      "UPDATE tabla_usuarios SET ? WHERE id = ?",
+      "UPDATE usuarios SET ? WHERE id = ?",
       [workout, workoutId],
       (err, result) => {
         if (err) {
@@ -64,7 +69,7 @@ const updateWorkout = (workoutId, workout) => {
 const deleteWorkout = (workoutId) => {
   return new Promise((resolve, reject) => {
     conexion.query(
-      "DELETE FROM marca WHERE id_marca = ?",
+      "DELETE FROM usuarios WHERE id = ?",
       [workoutId],
       (err, result) => {
         if (err) {

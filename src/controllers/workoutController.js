@@ -1,9 +1,9 @@
+//Exportamos los servicios que se requieren de una base de datos 
 const workoutServices = require("../services/workoutService");
 
-// const getAllWorkouts = (req, res) => {
-//   const allWorkouts = workoutServices.getAllWorkouts();
-//   res.send(`Usuarios registrados ${allWorkouts}`);
-// };
+
+//Aqui tenemos las funciones que se ejecutaran en las rutas  
+
 const getAllWorkout = async (req, res) => {
   try {
     const allWorkouts = await workoutServices.getAllWorkout();
@@ -58,7 +58,7 @@ const deleteWorkout = async (req, res) => {
   }
 };
 
-
+//Exportamos las funciones de los controladores de rutas
 module.exports = {
   getAllWorkout,
   getOneWorkout,

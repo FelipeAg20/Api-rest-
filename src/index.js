@@ -1,32 +1,26 @@
+//Se crea una constante que importa el framework express
 const express = require('express');
+
+//Se importan las rutas que tienen los verbos HTTP
 const v1RouterWorkout = require('./v1/routes/workoutRoutes');
+
+//Se importan la conexion a la base de datos
 const conexion = require('../src/database/connectionDb');
 
+//Obejto de express que optiene todos los metodos de express
 const app = express();
+
+//Leer formatos .json
 app.use(express.json());
 
-// Configuración del motor de vistas
-app.set("view engine", "ejs");
-app.set('views', path.join(__dirname, 'src/views'));
 
-
-// Middleware para manejar datos de formularios
-app.use(express.urlencoded({ extended: true }));
-
-// Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'src/public')));
-
-
-//Que busque el puerto en las variables de entorno, si no lo encuentra asigna el 3000
+//En esta constante busca en las variables de entorno el puerto, si no lo encuentra asiga el 3000
 const port = process.env.PORT || 3000;
-app.use('/v1/workout', v1RouterWorkout);
-// app.use("/api/v1", v1Router);//AQui concatenamos la ruta del route a (/api/v1/)
 
+//Ruta principal de la API REST
+app.use('/v1/workout', v1RouterWorkout );
 
-
-
-
-
+//Funcion para confirmar conexion del servidor
 app.listen(port, function(err){
     if (err) {
         throw err;
